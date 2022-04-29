@@ -1,0 +1,6 @@
+rootProject.name = 'challenge-services'
+
+
+include ':challenge-common'
+project(':challenge-common').projectDir = new File(settingsDir,'../challenge-common')
+

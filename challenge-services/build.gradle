@@ -1,0 +1,38 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.7'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.mx.brook'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+}
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+		
+	implementation 'org.springframework.session:spring-session-core'
+	
+	
+	
+	implementation project(path: ':challenge-common')
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	
+}
+bootRun {
+	def env = findProperty('env') ?: "dev"
+	println "Profile actual: ${env}, ejemplo dev: -Penv=dev"
+	args = ["--spring.profiles.active=" + env]
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
